@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import React from "react";
+import { LocalizedStringProvider } from "react-aria-components/i18n";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,14 +9,36 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body style={{ padding: "1rem" }}>
+        <LocalizedStringProvider locale="en" />
         {children}
+        {modal}
       </body>
     </html>
   );
 }
+
+// Then, try to delete @modal folder and corresponding parallel route props
+// Now not found page does execute the script from <LocalizedStringProvider /> as it should
+
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   return (
+//     <html lang="en">
+//       <body style={{ padding: "1rem" }}>
+//         <LocalizedStringProvider locale="en" />
+//         {children}
+//       </body>
+//     </html>
+//   );
+// }
