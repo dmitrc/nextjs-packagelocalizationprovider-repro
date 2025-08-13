@@ -9,36 +9,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body style={{ padding: "1rem" }}>
         <LocalizedStringProvider locale="en" />
         {children}
-        {modal}
       </body>
     </html>
   );
 }
-
-// Then, try to delete @modal folder and corresponding parallel route props
-// Now not found page does execute the script from <LocalizedStringProvider /> as it should
-
-// export default function RootLayout({
-//   children,
-// }: Readonly<{
-//   children: React.ReactNode;
-// }>) {
-//   return (
-//     <html lang="en">
-//       <body style={{ padding: "1rem" }}>
-//         <LocalizedStringProvider locale="en" />
-//         {children}
-//       </body>
-//     </html>
-//   );
-// }
